@@ -8,11 +8,12 @@ package cn.qf.log.pojo;
  **/
 
 public class WebInfo {
-    private String date;
+    //private String date;
     private String en;
     private String p_url;
     private String p_ref;
     private String tt;
+    private String ver;
     private String pl;
     private String sdk;
     private String u_ud;
@@ -20,7 +21,7 @@ public class WebInfo {
     private String u_sd;
     private String c_time;
     private String l;
-    private String b_iev;
+    //private String b_iev;
     private String b_rst;
     private String deviceType;
     private String osName;
@@ -35,7 +36,7 @@ public class WebInfo {
     public WebInfo(String en, String p_url, String p_ref, String tt, String pl, String sdk,
                    String u_ud, String u_mid, String u_sd, String c_time, String l, String b_iev,
                    String b_rst, String deviceType, String osName, String uaFamily, String browserVersionInfo,
-                   String uaName, String type,String date) {
+                   String uaName, String type,String ver) {
         this.en = en;
         this.p_url = p_url;
         this.p_ref = p_ref;
@@ -47,7 +48,7 @@ public class WebInfo {
         this.u_sd = u_sd;
         this.c_time = c_time;
         this.l = l;
-        this.b_iev = b_iev;
+        //this.b_iev = b_iev;
         this.b_rst = b_rst;
         this.deviceType = deviceType;
         this.osName = osName;
@@ -55,38 +56,48 @@ public class WebInfo {
         this.browserVersionInfo = browserVersionInfo;
         this.uaName = uaName;
         this.type = type;
-        this.date = date;
+        this.ver = ver;
+        //this.date = date;
     }
 
     @Override
     public String toString() {
-        return date + ' ' + en + ' ' +
-                 p_url + ' ' +
-                 p_ref + ' ' +
-                 tt + ' ' +
-                 pl + ' ' +
-                 sdk + ' ' +
-                 u_ud + ' ' +
-                 u_mid + ' ' +
-                 u_sd + ' ' +
-                 c_time + ' ' +
-                 l + '\'' +
-                 b_iev + ' ' +
-                 b_rst + ' ' +
-                 deviceType + ' ' +
-                 osName + ' ' +
-                 uaFamily + ' ' +
-                 browserVersionInfo + ' ' +
-                 uaName + ' ' +
+        return  en + '\t' +
+                 p_url + '\t' +
+                 p_ref + '\t' +
+                 tt + '\t' +
+                ver + '\t' +
+                 pl + '\t' +
+                 sdk + '\t' +
+                 u_ud + '\t' +
+                 u_mid + '\t' +
+                 u_sd + '\t' +
+                 c_time + '\t' +
+                 l + '\t' +
+                 b_rst + '\t' +
+                 deviceType + '\t' +
+                 osName + '\t' +
+                 uaFamily + '\t' +
+                 browserVersionInfo + '\t' +
+                 uaName + '\t' +
                  type;
     }
 
-    public String getDate() {
-        return date;
+    //public String getDate() {
+    //    return date;
+    //}
+    //
+    //public void setDate(String date) {
+    //    this.date = date;
+    //}
+
+
+    public String getVer() {
+        return ver;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setVer(String ver) {
+        this.ver = ver;
     }
 
     public String getEn() {
@@ -177,13 +188,7 @@ public class WebInfo {
         this.l = l;
     }
 
-    public String getB_iev() {
-        return b_iev;
-    }
 
-    public void setB_iev(String b_iev) {
-        this.b_iev = b_iev;
-    }
 
     public String getB_rst() {
         return b_rst;

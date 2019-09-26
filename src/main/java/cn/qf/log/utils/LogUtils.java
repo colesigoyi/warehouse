@@ -119,46 +119,50 @@ public class LogUtils {
             return null;
         }
     }
-    public static void main(String[] args) throws Exception {
-        System.out.println(LogUtils.parseaIP4Taobao("170.120.0.1").toString());
-    }
-    static String info =
-            "10.211.55.2\t" +
-            "1569409634.270\t" +
-            "10.211.55.42\t" +
-            "/index.html?" +
-            "en=e_pv&" +
-            "p_url=http%3A%2F%2Flocalhost%3A8080%2Fdemo.jsp&" +
-            "p_ref=http%3A%2F%2Flocalhost%3A8080%2Fdemo.jsp&" +
-            "tt=%E6%B5%8B%E8%AF%95%E9%A1%B5%E9%9D%A21&ver=1&" +
-            "pl=website&" +
-            "sdk=js&" +
-            "u_ud=9772CC0D-9E1F-40A1-B233-88CE5BC4CF71&" +
-            "u_mid=aidon&" +
-            "u_sd=FBDCA27D-D5D0-4211-9FF9-BC3EDE3E1CAE&" +
-            "c_time=1569409633622&" +
-            "l=zh-CN&" +
-            "b_iev=Mozilla%2F5.0%20(Macintosh%3B%20Intel%20Mac%20OS%20X%2010_14_6)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F76.0.3809.87%20Safari%2F537.36&" +
-            "b_rst=1680*1050\t" +
-            "19\t" +
-            "09\t" +
-            "25";
-    public static WebInfo getInfo(String str1, String str2, String str3, String str4) {
+    //public static void main(String[] args) throws Exception {
+    //    System.out.println(LogUtils.parseaIP4Taobao("170.120.0.1").toString());
+    //}
+    //static String info =
+    //        "10.211.55.2\t" +
+    //        "1569409634.270\t" +
+    //        "10.211.55.42\t" +
+    //        "/index.html?" +
+    //        "en=e_pv&" +
+    //        "p_url=http%3A%2F%2Flocalhost%3A8080%2Fdemo.jsp&" +
+    //        "p_ref=http%3A%2F%2Flocalhost%3A8080%2Fdemo.jsp&" +
+    //        "tt=%E6%B5%8B%E8%AF%95%E9%A1%B5%E9%9D%A21&ver=1&" +
+    //        "pl=website&" +
+    //        "sdk=js&" +
+    //        "u_ud=9772CC0D-9E1F-40A1-B233-88CE5BC4CF71&" +
+    //        "u_mid=aidon&" +
+    //        "u_sd=FBDCA27D-D5D0-4211-9FF9-BC3EDE3E1CAE&" +
+    //        "c_time=1569409633622&" +
+    //        "l=zh-CN&" +
+    //        "b_iev=Mozilla%2F5.0%20(Macintosh%3B%20Intel%20Mac%20OS%20X%2010_14_6)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F76.0.3809.87%20Safari%2F537.36&" +
+    //        "b_rst=1680*1050\t" +
+    //        "19\t" +
+    //        "09\t" +
+    //        "25";
+    public static WebInfo getInfo(String str) throws IOException{
         WebInfo webInfo = new WebInfo();
         //String testInfo = str;
         //String[] splitInfo = str.split("\t");
-        String dateInfo = str2;
-        String info = str4;
+        //String dateInfo = str1;
+        String info = str;
         //System.out.println(dataFormatTool(dateInfo));
         webInfo = splitInfo(info,webInfo);
-        webInfo.setDate(dataFormatTool(dateInfo));
+        //webInfo.setDate(dataFormatTool(dateInfo));
         return webInfo;
+    }
+    public static String getDate(String str) throws IOException{
+        String dateInfo = str;
+        return dataFormatTool(dateInfo);
 
     }
     public static WebInfo splitInfo(String info, WebInfo webInfo) {
         try {
-            String[] split = info.split("\\?");
-            String[] strings = split[1].split("&");
+            //String[] split = info.split("\\?");
+            String[] strings = info.split("&");
             String en = decoderTool(strings[0]);
             String p_url = decoderTool(strings[1]);
             String p_ref = decoderTool(strings[2]);
@@ -181,6 +185,7 @@ public class LogUtils {
             webInfo.setP_url(p_url);
             webInfo.setP_ref(p_ref);
             webInfo.setTt(tt);
+            webInfo.setVer(ver);
             webInfo.setPl(pl);
             webInfo.setSdk(sdk);
             webInfo.setU_ud(u_ud);
@@ -196,37 +201,12 @@ public class LogUtils {
             webInfo.setUaName(parseAgentInfo.getUaName());
             webInfo.setType(parseAgentInfo.getType());
             return webInfo;
-            //String string = webInfo.toString();
-            //System.out.println(string);
-
-            //System.out.println(en);
-            //System.out.println(p_url);
-            //System.out.println(p_ref);
-            //System.out.println(tt);
-            //System.out.println(pl);
-            //System.out.println(sdk);
-            //System.out.println(u_ud);
-            //System.out.println(u_mid);
-            //System.out.println(u_sd);
-            //System.out.println(c_time);
-            //System.out.println(l);
-            //System.out.println(b_rst);
-
-            //System.out.println("设备类型："+parseAgentInfo.getDeviceType());//
-            //System.out.println("操作系统："+parseAgentInfo.getOsName());//
-            //System.out.println("浏览器名称："+parseAgentInfo.getUaFamily());//
-            //System.out.println("浏览器版本："+parseAgentInfo.getBrowserVersionInfo());//
-            //System.out.println("浏览器:"+parseAgentInfo.getUaName());
-            //System.out.println("类型："+parseAgentInfo.getType());
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
-    public static String decoderTool(String str) {
+    public static String decoderTool(String str) throws IOException {
         try {
             str = str.split("=")[1];
             str = URLDecoder.decode(str, "utf-8");
@@ -235,7 +215,7 @@ public class LogUtils {
         }
         return str;
     }
-    public static String dataFormatTool(String dateStr){
+    public static String dataFormatTool(String dateStr) throws IOException{
         String[] split = dateStr.split("\\.");
         String s1 = split[0] + split[1];
         long dateInfo = Long.valueOf(s1);
